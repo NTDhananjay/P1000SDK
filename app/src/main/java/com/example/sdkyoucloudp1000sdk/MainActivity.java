@@ -17,7 +17,7 @@ import com.example.youcloudp1000sdk.custom_view.ProcessDialog;
 import com.example.youcloudp1000sdk.model.P1000Request;
 import com.example.youcloudp1000sdk.utils.TransactionType;
 import com.example.youcloudp1000sdk.view.fragment.PairedDeviceFragment;
-import com.example.youcloudp1000sdk.view.fragment.PinpadFragmentSettings;
+import com.example.youcloudp1000sdk.view.fragment.P1000Manager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +25,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     String fName;
-    PinpadFragmentSettings pinpadFragmentSettings;
+    P1000Manager pinpadFragmentSettings;
     PairedDeviceFragment pairedDeviceFragment;
     TextView statusTv, responseCodeTv, responseMessageTv, version;
     CustomDialog customDialog;
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         btnLoadAidKey = findViewById(R.id.btnLoadAidKey);
         btnStartTransaction = findViewById(R.id.btnStartTransaction);
 
-       pinpadFragmentSettings = PinpadFragmentSettings.getInstance(MainActivity.this,"yCPDTW1iDgCO3VSn8Orn5DmEQth8MTGj");
+       pinpadFragmentSettings = P1000Manager.getInstance(MainActivity.this,"yCPDTW1iDgCO3VSn8Orn5DmEQth8MTGj");
 
         btnLoadAidKey.setOnClickListener(new View.OnClickListener() {
             @Override

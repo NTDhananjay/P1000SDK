@@ -16,7 +16,6 @@ import com.basewin.services.PBOCBinder;
 import com.basewin.services.ServiceManager;
 import com.basewin.utils.BytesUtil;
 import com.basewin.utils.LoadParamManage;
-import com.bw.jni.util.tlv.HexUtil;
 import com.example.youcloudp1000sdk.P1000CallBacks;
 import com.example.youcloudp1000sdk.StatusCallBack;
 import com.example.youcloudp1000sdk.TransactionCallback;
@@ -32,7 +31,6 @@ import com.example.youcloudp1000sdk.utils.Constants;
 import com.example.youcloudp1000sdk.utils.Session;
 import com.example.youcloudp1000sdk.utils.SessionConstants;
 import com.example.youcloudp1000sdk.utils.StaticValues;
-import com.example.youcloudp1000sdk.utils.TrippleDES;
 import com.example.youcloudp1000sdk.y2000.constants.GlobalData;
 import com.example.youcloudp1000sdk.y2000.constants.MyCUPParam;
 import com.example.youcloudp1000sdk.y2000.constants.PinpadInterfaceVersion;
@@ -43,11 +41,8 @@ import com.pos.sdk.emvcore.PosEmvCoreManager;
 import com.pos.sdk.emvcore.PosEmvParam;
 import com.pos.sdk.emvcore.PosTermInfo;
 
-import org.bouncycastle.util.encoders.Hex;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.logging.Logger;
 
 import retrofit2.Response;
 
@@ -56,7 +51,7 @@ import retrofit2.Response;
  * Created by shankar.savant on 6/9/2017.
  */
 
-public class PinpadFragmentSettings implements TransactionCallback {
+public class P1000Manager implements TransactionCallback {
 
    // View view;
     Button btnLogin, btnLoadMainKeys, btnLoadWorkKeys;
@@ -105,7 +100,7 @@ public class PinpadFragmentSettings implements TransactionCallback {
     protected ProcessDialog processdialog = null;
     Button btnStartLogs;
     P1000CallBacks p1000CallBacks;
-    private static PinpadFragmentSettings ourInstance;
+    private static P1000Manager ourInstance;
     private static String ucubeKey = null;
     private static boolean KEYSLOADED = false;
 /*
@@ -161,17 +156,17 @@ public class PinpadFragmentSettings implements TransactionCallback {
             loadPinKey(P1000Request, p1000CallBacks);
         }
     }
-    private PinpadFragmentSettings(Context context) {
+    private P1000Manager(Context context) {
         this.getActivity = context;
     }
-    public static PinpadFragmentSettings getInstance(Context mainActivity, String key) {
+    public static P1000Manager getInstance(Context mainActivity, String key) {
 
         //    btnLoadMainKeys = (Button) view.findViewById(R.id.btnLoadMainKeys);
         //  btnLoadWorkKeys = (Button) view.findViewById(R.id.btnLoadWorkKeys);
         //  btnLogin = (Button) view.findViewById(R.id.btnLogin);
         //   btnStartLogs = (Button) view.findViewById(R.id.btnSt
         if (ourInstance == null) {
-            ourInstance = new PinpadFragmentSettings(mainActivity);
+            ourInstance = new P1000Manager(mainActivity);
             ucubeKey = key;
 
             try {
